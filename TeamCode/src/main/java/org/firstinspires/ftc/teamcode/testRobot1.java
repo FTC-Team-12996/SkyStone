@@ -11,6 +11,7 @@ public class testRobot1 extends LinearOpMode {
     private DcMotor rightFront;
     private DcMotor leftBack;
     private DcMotor rightBack;
+    boolean done = true;
     //private DigitalChannel digitalTouch;
     //private DistanceSensor sensorColorRange;
     //private Servo servoTest;
@@ -32,6 +33,8 @@ public class testRobot1 extends LinearOpMode {
         //sensorColorRange = hardwareMap.get(DistanceSensor.class, "sensorColorRange");
         //servoTest = hardwareMap.get(Servo.class, "servoTest");
 
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         // Wait for the game to start (driver presses PLAY)
@@ -40,6 +43,26 @@ public class testRobot1 extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             telemetry.addData("Status", "Running");
+
+
+
+            if(done) {
+
+                leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+                leftFront.setTargetPosition(1000);
+
+                leftFront.setPower(0.2);
+
+                leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            }
+            while(leftFront.isBusy()) {
+                // wait
+            }
+
+            leftFront.setPower(0);
+
+            done = false;
 
             while(-gamepad1.left_stick_y > 0.1) { // Forward with the y-values of the left joystick
                 leftFront.setPower(gamepad1.left_stick_y);
