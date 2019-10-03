@@ -46,29 +46,70 @@ public class testRobot1 extends LinearOpMode {
 
 
 
-            if(done) {
+//            if(done) {
+//
+//                leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); // Torquenado has 1440 ticks
+//
+//                leftFront.setTargetPosition(1440);
+//
+//                leftFront.setPower(0.2);
+//
+//                leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            }
+//            while(leftFront.isBusy()) {
+//                // wait
+//            }
+//
+//            leftFront.setPower(0);
+//
+//            done = false;
 
-                leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-                leftFront.setTargetPosition(1000);
-
-                leftFront.setPower(0.2);
-
-                leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            }
-            while(leftFront.isBusy()) {
-                // wait
-            }
-
-            leftFront.setPower(0);
-
-            done = false;
-
-            while(-gamepad1.left_stick_y > 0.1) { // Forward with the y-values of the left joystick
+            while(gamepad1.left_stick_y > 0.1) { // Forward with the y-values of the left joystick
                 leftFront.setPower(gamepad1.left_stick_y);
                 leftBack.setPower(gamepad1.left_stick_y);
                 rightFront.setPower(-gamepad1.left_stick_y);
                 rightBack.setPower(-gamepad1.left_stick_y);
+                telemetry.addData("Left Stick Y value:", gamepad1.left_stick_y);
+                telemetry.update();
+            }
+
+            while(gamepad1.left_stick_y < -0.1) { // Backwards with the y-values of the left joystick
+                leftFront.setPower(gamepad1.left_stick_y);
+                leftBack.setPower(gamepad1.left_stick_y);
+                rightFront.setPower(-gamepad1.left_stick_y);
+                rightBack.setPower(-gamepad1.left_stick_y);
+                telemetry.addData("Left Stick Y value:", gamepad1.left_stick_y);
+                telemetry.update();
+            }
+
+            while(gamepad1.right_stick_y > 0.1) { // Forward with the y-values of the left joystick
+                leftFront.setPower(gamepad1.right_stick_y);
+                leftBack.setPower(gamepad1.right_stick_y);
+                rightFront.setPower(gamepad1.right_stick_y);
+                rightBack.setPower(gamepad1.right_stick_y);
+                telemetry.addData("Right Stick X value:", gamepad1.right_stick_x);
+                telemetry.update();
+            }
+
+            while(gamepad1.right_stick_y < -0.1) { // Forward with the y-values of the left joystick
+                leftFront.setPower(-gamepad1.right_stick_y);
+                leftBack.setPower(-gamepad1.right_stick_y);
+                rightFront.setPower(-gamepad1.right_stick_y);
+                rightBack.setPower(-gamepad1.right_stick_y);
+                telemetry.addData("Right Stick X value:", gamepad1.right_stick_x);
+                telemetry.update();
+            }
+            while(gamepad1.right_stick_x > 0.1) {
+                leftFront.setPower(gamepad1.right_stick_x);
+                leftBack.setPower(-gamepad1.right_stick_x);
+                rightFront.setPower(gamepad1.right_stick_x);
+                rightBack.setPower(-gamepad1.right_stick_x);
+            }
+            while (gamepad1.right_stick_x < -0.1) {
+                leftFront.setPower(gamepad1.right_stick_x);
+                leftBack.setPower(-gamepad1.right_stick_x);
+                rightFront.setPower(gamepad1.right_stick_x);
+                rightBack.setPower(-gamepad1.right_stick_x);
             }
 
             leftFront.setPower(0);
