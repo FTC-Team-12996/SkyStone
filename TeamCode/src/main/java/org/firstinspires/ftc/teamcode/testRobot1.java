@@ -82,20 +82,20 @@ public class testRobot1 extends LinearOpMode {
                 telemetry.update();
             }
 
-            while(gamepad1.right_stick_y > 0.1) { // Forward with the y-values of the left joystick
-                leftFront.setPower(gamepad1.right_stick_y);
-                leftBack.setPower(gamepad1.right_stick_y);
-                rightFront.setPower(gamepad1.right_stick_y);
-                rightBack.setPower(gamepad1.right_stick_y);
+            while(gamepad1.left_stick_x > 0.1) { // Forward with the y-values of the left joystick
+                leftFront.setPower(gamepad1.left_stick_x);
+                leftBack.setPower(gamepad1.left_stick_x);
+                rightFront.setPower(gamepad1.left_stick_x);
+                rightBack.setPower(gamepad1.left_stick_x);
                 telemetry.addData("Right Stick X value:", gamepad1.right_stick_x);
                 telemetry.update();
             }
 
-            while(gamepad1.right_stick_y < -0.1) { // Forward with the y-values of the left joystick
-                leftFront.setPower(-gamepad1.right_stick_y);
-                leftBack.setPower(-gamepad1.right_stick_y);
-                rightFront.setPower(-gamepad1.right_stick_y);
-                rightBack.setPower(-gamepad1.right_stick_y);
+            while(gamepad1.left_stick_x < -0.1) { // Forward with the y-values of the left joystick
+                leftFront.setPower(gamepad1.left_stick_x);
+                leftBack.setPower(gamepad1.left_stick_x);
+                rightFront.setPower(gamepad1.left_stick_x);
+                rightBack.setPower(gamepad1.left_stick_x);
                 telemetry.addData("Right Stick X value:", gamepad1.right_stick_x);
                 telemetry.update();
             }
