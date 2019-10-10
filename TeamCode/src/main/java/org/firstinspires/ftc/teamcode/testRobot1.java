@@ -44,26 +44,6 @@ public class testRobot1 extends LinearOpMode {
         while (opModeIsActive()) {
             telemetry.addData("Status", "Running");
 
-
-
-//            if(done) {
-//
-//                leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); // Torquenado has 1440 ticks
-//
-//                leftFront.setTargetPosition(1440);
-//
-//                leftFront.setPower(0.2);
-//
-//                leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//            }
-//            while(leftFront.isBusy()) {
-//                // wait
-//            }
-//
-//            leftFront.setPower(0);
-//
-//            done = false;
-
             while(gamepad1.left_stick_y > 0.1) { // Forward with the y-values of the left joystick
                 leftFront.setPower(gamepad1.left_stick_y);
                 leftBack.setPower(gamepad1.left_stick_y);

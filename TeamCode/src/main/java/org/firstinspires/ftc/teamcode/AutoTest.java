@@ -21,16 +21,18 @@ public class AutoTest extends LinearOpMode {
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
         leftBack = hardwareMap.get(DcMotor.class, "leftBack");
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
-        
+
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        driveForward(5);
+        waitForStart();
+
+        driveForward(24, 1);
     }
 
-    public void driveForward(double inches) {
+    public void driveForward(double inches, double speed) {
         // left is positive while right is negative
         // rightBack has an encoder
         int ticks = (int)(inches * 120);
@@ -39,10 +41,10 @@ public class AutoTest extends LinearOpMode {
 
         rightBack.setTargetPosition(ticks);
 
-        leftFront.setPower(1);
-        rightFront.setPower(-1);
-        leftBack.setPower(1);
-        rightBack.setPower(-1);
+        leftFront.setPower(-speed);
+        rightFront.setPower(speed);
+        leftBack.setPower(-speed);
+        rightBack.setPower(speed);
 
 
         rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
