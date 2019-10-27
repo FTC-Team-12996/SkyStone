@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/da59154c017f450cbec567c9204027ec)](https://www.codacy.com/manual/FTC-Team-12996/SkyStone?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FTC-Team-12996/SkyStone&amp;utm_campaign=Badge_Grade)
 ## NOTICE
 
 This repository contains the public FTC SDK for the SKYSTONE (2019-2020) competition season.  
