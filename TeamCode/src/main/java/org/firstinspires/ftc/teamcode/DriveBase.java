@@ -29,14 +29,14 @@ public class DriveBase {
         rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorController[3] = rightBack;
 
-        slide = hardwareMap.get(DcMotor.class, "slide");
-        slide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        slide = hardwareMap.get(DcMotor.class, "slide");
+//        slide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         motorController[0].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorController[1].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorController[2].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorController[3].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        slide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //slide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
 
