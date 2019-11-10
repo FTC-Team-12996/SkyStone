@@ -61,10 +61,10 @@ public class AutoTest extends LinearOpMode {
 
 
 
-//            for(int i = 0; i < 100; i++) {
-//                alphaAvrg +=  colorsensor.alpha();
-//                sleep(10);
-//            }
+            for(int i = 0; i < 100; i++) {
+                alphaAvrg +=  colorsensor.alpha();
+                sleep(10);
+            }
 ////            telemetry.addData("Alpha", (alphaAvrg / 100));
 //            alphaAvrg = 0;
 //

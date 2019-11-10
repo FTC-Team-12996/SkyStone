@@ -50,6 +50,7 @@ public class testRobot1 extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             telemetry.addData("Status", "Running");
+            clawServo.setPosition(0);
 
             while(gamepad1.left_stick_y > 0.1) { // Forward with the y-values of the left joystick
                 protoBot.driveForward(-gamepad1.left_stick_y);
