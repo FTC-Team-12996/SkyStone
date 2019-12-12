@@ -9,9 +9,7 @@ public class DriveBase {
     private DcMotor rightFront;
     private DcMotor leftBack;
     private DcMotor rightBack;
-    private DcMotor slide;
     private DcMotor[] motorController = new DcMotor[4];
-    double slideMax = 2280;
 
 
     public DriveBase(HardwareMap hardwareMap) {
@@ -29,14 +27,10 @@ public class DriveBase {
         rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorController[3] = rightBack;
 
-//        slide = hardwareMap.get(DcMotor.class, "slide");
-//        slide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
         motorController[0].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorController[1].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorController[2].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorController[3].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //slide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
 

@@ -34,7 +34,7 @@ public class AUTO_BLUE_Stone_Collection extends LinearOpMode {
         waitForStart();
 
         while(opModeIsActive()) {
-            clawServo.setPosition(0); // Resets the servo
+            clawServo.setPosition(0.1); // Resets the servo
 
             while(Double.isNaN(sensorDistance.getDistance(DistanceUnit.CM))) { // Drives until the stones are in view of the distance sensor
                 driveBase.driveForward(0.5);
@@ -60,7 +60,7 @@ public class AUTO_BLUE_Stone_Collection extends LinearOpMode {
                     skystoneIsDetected = true;
                     break;
                 } else {
-                    driveBase.moveRight(5, 0.3);
+                    driveBase.moveRight(5, 1);
                 }
                 alphaAvrg = 0;
             }
@@ -68,7 +68,7 @@ public class AUTO_BLUE_Stone_Collection extends LinearOpMode {
             if(!skystoneIsDetected) { // Grabs the last stone if the others were not identified as the skystone
                 clawServo.setPosition(1);
                 skystoneIsDetected = true;
-                driveBase.moveRight(5, 0.3);
+                driveBase.moveRight(5, 1);
 
             }
         }
