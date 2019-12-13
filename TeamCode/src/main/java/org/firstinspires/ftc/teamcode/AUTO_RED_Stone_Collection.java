@@ -53,7 +53,7 @@ public class AUTO_RED_Stone_Collection extends LinearOpMode {
             telemetry.addData("Distance: ", sensorDistance.getDistance(DistanceUnit.CM));
             telemetry.update();
 
-            while (Double.isNaN(sensorDistance.getDistance(DistanceUnit.CM))) { // Drives forwards while the stones are out of sight
+            while (Double.isNaN(sensorDistance.getDistance(DistanceUnit.CM)) || sensorDistance.getDistance(DistanceUnit.CM) > 7) { // Drives forwards while the stones are out of sight
                 driveBase.driveForward(-0.5);
                 sensorDistance.getDistance(DistanceUnit.CM);
                 telemetry.addData("Distance: ", sensorDistance.getDistance(DistanceUnit.CM));
@@ -61,12 +61,11 @@ public class AUTO_RED_Stone_Collection extends LinearOpMode {
             }
             driveBase.stopMotors();
 
-            while (sensorDistance.getDistance(DistanceUnit.CM) > 1) { // Drives up to the first stone
-                driveBase.driveForward(-0.1);
-                sensorDistance.getDistance(DistanceUnit.CM);
-                telemetry.addData("Distance: ", sensorDistance.getDistance(DistanceUnit.CM));
-                telemetry.update();
-            }
+            // Drives up to the first stone
+//                driveBase.driveForward(-0.1);
+//                sensorDistance.getDistance(DistanceUnit.CM);
+//                telemetry.addData("Distance: ", sensorDistance.getDistance(DistanceUnit.CM));
+//                telemetry.update();
 
             driveBase.stopMotors();
 
@@ -75,9 +74,9 @@ public class AUTO_RED_Stone_Collection extends LinearOpMode {
             for (int x = 0; x < 2; x++) {
                 for (int i = 0; i < 100; i++) {
                     alphaAvrg += colorsensor.alpha();
-                    sleep(10);
+                    sleep(5);
                 }
-                if (alphaAvrg < 400) {
+                if (alphaAvrg / 100 < 400) {
                     clawServo.setPosition(1);
                     skystoneIsDetected = true;
                     break;

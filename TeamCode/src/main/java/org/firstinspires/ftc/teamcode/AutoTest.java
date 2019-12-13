@@ -1,3 +1,5 @@
+// Autonomous code developed by Andy Greer during the 2019 season
+
 package org.firstinspires.ftc.teamcode;
 
 import android.app.Activity;
@@ -7,79 +9,54 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
-
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
-import java.util.Locale;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous
 
-// One rotation of the mecanum wheels is 12 inches
-// One rotation of the mecanum wheels is 1440 ticks
-
-// COLOR SENSOR
-// 
-
 public class AutoTest extends LinearOpMode {
-    ColorSensor colorsensor;
-    DistanceSensor sensorDistance;
-    int alphaAvrg = 0;
+    private ColorSensor colorsensor;
+    private DistanceSensor sensorDistance;
+    private Servo clawServo;
+    private boolean skystoneIsDetected = false;
+    private int alphaAvrg;
+    private int redAvrg;
+    private int blueAvrg;
+    private int greenAvrg;
+    private int rgbAvrg;
 
-    @Override
-    public void runOpMode() throws InterruptedException {
-        DriveBase protoBot = new DriveBase(hardwareMap);
+    public void runOpMode() {
+
+        DriveBase driveBase = new DriveBase(hardwareMap);
         colorsensor = hardwareMap.get(ColorSensor.class, "colorSensor");
         sensorDistance = hardwareMap.get(DistanceSensor.class, "colorSensor");
         int relativeLayoutId = hardwareMap.appContext.getResources().getIdentifier("RelativeLayout", "id", hardwareMap.appContext.getPackageName());
         final View relativeLayout = ((Activity) hardwareMap.appContext).findViewById(relativeLayoutId);
+        clawServo = hardwareMap.get(Servo.class, "clawServo");
 
         waitForStart();
 
-        while(opModeIsActive()) {
-
-//            colorsensor.enableLed(false);
-//            sleep(1000);
-//            colorsensor.enableLed(true);
-//            sleep(100);
-//
-////             send the info back to driver station using telemetry function.
-//            telemetry.addData("Alpha", colorsensor.alpha());
-//            telemetry.addData("Red  ", colorsensor.red());
-//            telemetry.addData("Green", colorsensor.green());
-//            telemetry.addData("Blue ", colorsensor.blue());
-
-//            relativeLayout.post(new Runnable() {
-//                public void run() {
-//                    relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));
-//                }
-//            });
-
-            telemetry.addData("Distance (cm)",
-                    String.format(Locale.US, "%.02f", sensorDistance.getDistance(DistanceUnit.INCH)));
-            telemetry.update();
-            sleep(500);
-
-
-
-            for(int i = 0; i < 100; i++) {
-                alphaAvrg +=  colorsensor.alpha();
-                sleep(10);
+        while (opModeIsActive()) {
+            clawServo.setPosition(0.1); // Resets the servo
+            for (int i = 0; i < 100; i++) { // Takes the average of 100 measurements from the color sensor
+                alphaAvrg += colorsensor.alpha();
+                redAvrg += colorsensor.red();
+                blueAvrg += colorsensor.blue();
+                greenAvrg += colorsensor.green();
+                rgbAvrg += colorsensor.argb();
+                sleep(5);
             }
-////            telemetry.addData("Alpha", (alphaAvrg / 100));
-//            alphaAvrg = 0;
-//
-//            telemetry.update();
-//
-//            if(colorsensor.alpha() < 400) {
-//                telemetry.addData("Skystone", "");
-//                telemetry.update();
-//            }
-//            else{
-//                telemetry.addData("Color", "Else");
-//                telemetry.update();
-//            }
+            telemetry.addData("Alpha: ", alphaAvrg / 100);
+            telemetry.addData("Red: ", redAvrg / 100);
+            telemetry.addData("Blue: ", blueAvrg / 100);
+            telemetry.addData("Green: ", greenAvrg / 100);
+            telemetry.addData("RGB: ", rgbAvrg / 100);
+            telemetry.update();
 
-            //stop();
+            alphaAvrg = 0;
+            redAvrg = 0;
+            blueAvrg = 0;
+            greenAvrg = 0;
+            rgbAvrg = 0;
         }
     }
 }

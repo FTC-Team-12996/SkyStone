@@ -107,12 +107,12 @@ public class DriveBase {
 
         rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); // Torquenado has 1440 ticks
 
-        rightBack.setTargetPosition(ticks);
+        rightBack.setTargetPosition(-ticks);
 
         leftFront.setPower(speed);
-        rightFront.setPower(speed);
+        rightFront.setPower(-speed);
         leftBack.setPower(speed);
-        rightBack.setPower(speed);
+        rightBack.setPower(-speed);
 
 
         rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
