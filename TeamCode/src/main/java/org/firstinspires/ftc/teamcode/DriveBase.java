@@ -24,7 +24,7 @@ public class DriveBase {
         motorController[2] = leftBack;
 
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
-        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorController[3] = rightBack;
 
         motorController[0].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -74,6 +74,7 @@ public class DriveBase {
 
     // Autonomous functions
     public void driveForward(double inches, double speed) {
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // left is positive while right is negative
         // rightBack has an encoder
         int ticks = (int)(inches * 60);
@@ -82,9 +83,9 @@ public class DriveBase {
 
         rightBack.setTargetPosition(ticks);
 
-        leftFront.setPower(-speed);
+        leftFront.setPower(-speed + 0.05);
         rightFront.setPower(speed);
-        leftBack.setPower(-speed);
+        leftBack.setPower(-speed + 0.05);
         rightBack.setPower(speed);
 
 
@@ -98,9 +99,12 @@ public class DriveBase {
         rightFront.setPower(0);
         leftBack.setPower(0);
         rightBack.setPower(0);
+
+        rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     }
     public void driveBackwards(double inches, double speed) {
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // left is positive while right is negative
         // rightBack has an encoder
         int ticks = (int)(inches * 60);
@@ -109,10 +113,10 @@ public class DriveBase {
 
         rightBack.setTargetPosition(-ticks);
 
-        leftFront.setPower(speed);
         rightFront.setPower(-speed);
         leftBack.setPower(speed);
         rightBack.setPower(-speed);
+        leftFront.setPower(speed);
 
 
         rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -126,8 +130,11 @@ public class DriveBase {
         leftBack.setPower(0);
         rightBack.setPower(0);
 
+        rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
     }
     public void turnRight(double inches, double speed) {
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // left is positive while right is negative
         // rightBack has an encoder
         int ticks = (int)(inches * 60);
@@ -153,8 +160,11 @@ public class DriveBase {
         leftBack.setPower(0);
         rightBack.setPower(0);
 
+        rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
     }
     public void turnLeft(double inches, double speed) {
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // left is positive while right is negative
         // rightBack has an encoder
         int ticks = (int)(inches * 60);
@@ -180,8 +190,11 @@ public class DriveBase {
         leftBack.setPower(0);
         rightBack.setPower(0);
 
+        rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
     }
     public void moveRight(double inches, double speed) {
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         int ticks = (int)(inches * 60);
 
         rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); // Torquenado has 1440 ticks
@@ -204,10 +217,14 @@ public class DriveBase {
         rightFront.setPower(0);
         leftBack.setPower(0);
         rightBack.setPower(0);
+
+        rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
     }
 
 
     public void moveLeft(double inches, double speed) {
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         int ticks = (int)(inches * 60);
 
         rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); // Torquenado has 1440 ticks
@@ -230,6 +247,10 @@ public class DriveBase {
         rightFront.setPower(0);
         leftBack.setPower(0);
         rightBack.setPower(0);
+
+        rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+
     }
 
 
