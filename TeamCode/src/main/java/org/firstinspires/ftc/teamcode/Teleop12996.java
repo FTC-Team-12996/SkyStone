@@ -84,7 +84,7 @@ public class Teleop12996 extends LinearOpMode {
                 if (gamepad2.left_stick_y > 0.1 && slide.getCurrentPosition() >= 0) {
                     slide.setPower(-gamepad2.left_stick_y);
                     telemetry.update();
-                } else if (gamepad2.left_stick_y < -0.1 && slide.getCurrentPosition() <= 14400) {
+                } else if (gamepad2.left_stick_y < -0.1 && slide.getCurrentPosition() <= 13400) {
                     slide.setPower(-gamepad2.left_stick_y);
                     telemetry.update();
                 } else if (gamepad2.dpad_down) {
@@ -93,7 +93,7 @@ public class Teleop12996 extends LinearOpMode {
                 } else if (gamepad2.dpad_up) {
                     slide.setPower(0.4);
                     telemetry.update();
-                } else if ((slide.getCurrentPosition() > 14400 || slide.getCurrentPosition() < 0) || (gamepad2.left_stick_y > -0.1
+                } else if ((slide.getCurrentPosition() > 13400 || slide.getCurrentPosition() < 0) || (gamepad2.left_stick_y > -0.1
                         && gamepad2.left_stick_y < 0.1) && !gamepad2.dpad_up && !gamepad2.dpad_down) {
                     slide.setPower(0);
                 }

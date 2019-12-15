@@ -40,7 +40,7 @@ public class AUTO_BLUE_Stone__Collection extends LinearOpMode {
                 clawServo.setPosition(0.1); // Resets the servo
                 colorsensor.enableLed(true); // Turns on the color sensor
 
-                while (sensorDistance.getDistance(DistanceUnit.CM) > 7) {
+                while (sensorDistance.getDistance(DistanceUnit.CM) > 7 && opModeIsActive()) {
                     sensorDistance.getDistance(DistanceUnit.CM);
                 }
 
@@ -49,7 +49,7 @@ public class AUTO_BLUE_Stone__Collection extends LinearOpMode {
                 telemetry.update();
 
                 // Drives forwards while the stones are out of sight
-                while (Double.isNaN(sensorDistance.getDistance(DistanceUnit.CM)) || sensorDistance.getDistance(DistanceUnit.CM) > 8) {
+                while ((Double.isNaN(sensorDistance.getDistance(DistanceUnit.CM)) || sensorDistance.getDistance(DistanceUnit.CM) > 8) && opModeIsActive()) {
                     driveBase.driveForward(-0.5);
                     sensorDistance.getDistance(DistanceUnit.CM);
                     telemetry.addData("Distance: ", sensorDistance.getDistance(DistanceUnit.CM));

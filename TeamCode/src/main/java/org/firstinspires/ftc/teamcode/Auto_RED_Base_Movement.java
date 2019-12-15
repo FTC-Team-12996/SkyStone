@@ -33,7 +33,7 @@ public class Auto_RED_Base_Movement extends LinearOpMode {
                 slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 slide.setPower(1);
 
-                while (slide.isBusy()) {
+                while (slide.isBusy() && opModeIsActive()) {
 
                 }
                 slide.setPower(0);
@@ -42,11 +42,11 @@ public class Auto_RED_Base_Movement extends LinearOpMode {
 
                 driveBase.driveForward(70, 0.75);
 
-                slide.setTargetPosition(-500);
+                slide.setTargetPosition(-250);
                 slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 slide.setPower(-1);
 
-                while (slide.isBusy()) {
+                while (slide.isBusy() && opModeIsActive()) {
 
                 }
                 slide.setPower(0);
@@ -58,7 +58,7 @@ public class Auto_RED_Base_Movement extends LinearOpMode {
                 slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 slide.setPower(1);
 
-                while (slide.isBusy()) {
+                while (slide.isBusy() && opModeIsActive()) {
 
                 }
                 slide.setPower(0);
@@ -67,11 +67,11 @@ public class Auto_RED_Base_Movement extends LinearOpMode {
                 driveBase.driveForward(15, 1);
                 driveBase.moveLeft(50, 1);
 
-                slide.setTargetPosition(-500);
+                slide.setTargetPosition(-250);
                 slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 slide.setPower(-1);
 
-                while (slide.isBusy()) {
+                while (slide.isBusy() && opModeIsActive()) {
 
                 }
                 slide.setPower(0);

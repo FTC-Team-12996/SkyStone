@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -16,6 +17,7 @@ public class AutoTest extends LinearOpMode {
     private ColorSensor colorsensor;
     private DistanceSensor sensorDistance;
     private Servo clawServo;
+    private DcMotor slide;
     private boolean skystoneIsDetected = false;
     private int alphaAvrg;
     private int redAvrg;
@@ -31,21 +33,30 @@ public class AutoTest extends LinearOpMode {
         int relativeLayoutId = hardwareMap.appContext.getResources().getIdentifier("RelativeLayout", "id", hardwareMap.appContext.getPackageName());
         final View relativeLayout = ((Activity) hardwareMap.appContext).findViewById(relativeLayoutId);
         clawServo = hardwareMap.get(Servo.class, "clawServo");
+        slide = hardwareMap.get(DcMotor.class, "slide");
 
         waitForStart();
 
         while (opModeIsActive()) {
-//            clawServo.setPosition(0.1); // Resets the servo
-//            for (int i = 0; i < 100; i++) { // Takes the average of 100 measurements from the color sensor
-//                redAvrg += colorsensor.red();
-//                sleep(5);
-//            }
-//
-//            telemetry.addData("Red: ", redAvrg / 100);
-//            telemetry.update();
-//
-//            redAvrg = 0;
-            driveBase.turnLeft(15, 1);
+            slide.setTargetPosition(4500);
+                slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                slide.setPower(1);
+
+                while (slide.isBusy() && opModeIsActive()) {
+
+                }
+                slide.setPower(0);
+
+            slide.setTargetPosition(-250);
+            slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            slide.setPower(-1);
+
+            while (slide.isBusy() && opModeIsActive()) {
+
+            }
+            slide.setPower(0);
+
+            break;
         }
     }
 }
